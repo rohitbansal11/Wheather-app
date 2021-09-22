@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>weather</title>
+    <style>
+        #cityInput,
+        #cityName,
+        #inputContainer,
+        button {
+            margin: 3px;
+            padding: 5px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* #weatherContainer {
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            margin-right: 1px;
+            transform: translate(-50%, -50%);
+            height: 300px;
+            width: 950px;
+            border: 5px solid rgba(97, 95, 95, 0.829);
+            border-radius: 10px;
+        } */
+
+        /* #iconsContainer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: 1px;
+            transform: translate(-50%, -50%);
+            height: 240px;
+            width: 900px;
+            border: 5px solid rgb(31, 82, 82);
+            border-radius: 10px;
+        } */
+
+        .icons {
+            display: inline-bock;
+            float: left;
+            height: 150px;
+            width: 130px;
+            margin: 7px;
+            margin-top: 40px;
+            border: 5px solid rgb(48, 47, 47);
+            border-radius: 10px;
+        }
+
+        .image {
+            height: 120px;
+            width: 100%;
+        }
+
+        .imgClass {
+            height: 120px;
+            width: 100%;
+        }
+
+        .weather {
+            margin: 5px;
+            /*  background-color: rgb(106, 215, 255); */
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .minValues {
+            text-align: center;
+            display: inline-block;
+            border-radius: 5px;
+            height: 25px;
+            width: 85px;
+            margin: 0;
+            margin-bottom: 5px;
+            margin-left: 5px;
+        }
+
+
+        .maxValues {
+            text-align: center;
+            display: inline-block;
+            border-radius: 5px;
+            height: 25px;
+            width: 85px;
+            margin: 0;
+            margin-bottom: 5px;
+            margin-left: 5px;
+        }
+
+        #wheather {
+            margin-bottom: 40px;
+        }
+
+        .daycontainer {
+            display: none;
+        }
+
+        #tableone {
+            display: none;
+        }
+
+        #tabletwo {
+            display: none;
+        }
+
+        #tablethree {
+            display: none;
+        }
+
+        #tablefour {
+            display: none;
+        }
+
+        #tablefive {
+            display: none;
+        }
+    </style>
+</head>
+
+<body onload="DefaultScreen()">
+    <br>
+
+    <center>
+        <div class="input-group">
+            <div class="form-outline">
+                <h1 id="Para1">5 Days Weather Forecast</h1>
+                <input type="search" id="cityInput" class="form-control" />
+
+            </div>
+            <button type="button" class="btn btn-primary" id="subtn" onclick="GetInfo()">
+                <i class="fas fa-search"> Search</i>
+            </button>
+        </div>
+        <h2 id="cityName">---Mohali---</h2>
+    </center>
+
+
+    <div class="container" id="wheather">
+
+        <div id="weatherContainer">
+            <div id="iconsContainer">
+                <div class="icons" onclick="iconone() ; ">
+                    <p class="weather" id="day1"></p>
+                    <div class="image"><img src="dots.png" class="imgClass" id="img1"></div>
+                    <p class="minValues" id="day1Min">Loading...</p>
+                    <p class="maxValues" id="day1Max">Loading...</p>
+
+                </div>
+                <div class="icons" onclick="icontwo() ;">
+                    <p class="weather" id="day2"></p>
+                    <div class="image"><img src="dots.png" class="imgClass" id="img2"></div>
+                    <p class="minValues" id="day2Min">Loading...</p>
+                    <p class="maxValues" id="day2Max">Loading...</p>
+
+                </div>
+                <div class="icons" onclick="iconthree()">
+                    <p class="weather" id="day3"></p>
+                    <div class="image"><img src="dots.png" class="imgClass" id="img3"></div>
+                    <p class="minValues" id="day3Min">Loading...</p>
+                    <p class="maxValues" id="day3Max">Loading...</p>
+
+                </div>
+                <div class="icons" onclick="iconfour()">
+                    <p class="weather" id="day4"></p>
+                    <div class="image"><img src="dots.png" class="imgClass" id="img4"></div>
+                    <p class="minValues" id="day4Min">Loading...</p>
+                    <p class="maxValues" id="day4Max">Loading...</p>
+
+                </div>
+                <div class="icons" onclick="iconfive()">
+                    <p class="weather" id="day5"></p>
+                    <div class="image"><img src="dots.png" class="imgClass" id="img5"></div>
+                    <p class="minValues" id="day5Min">Loading...</p>
+                    <p class="maxValues" id="day5Max">Loading...</p>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <br><br><br>
+
+    <div class="container">
+        <table class="table table-dark ">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th scope="col">Min Temperatue</th>
+                    <th scope="col">Max Temperatue</th>
+
+                </tr>
+            </thead>
+            <tbody id="hourreport">
+
+
+            </tbody>
+        </table>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+
+        function GetInfo() {
+
+            var newName = document.getElementById("cityInput");
+            var cityName = document.getElementById("cityName");
+            const today = new Date()
+            // console.log(today.getHours())
+            cityName.innerHTML = "--" + newName.value + "--";
+
+            fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + newName.value + '&appid=c3784919fef5acbc46a727e187ad10e8')
+                .then(response => response.json())
+                .then(data => {
+
+
+
+                    for (i = 0; i < 5; i++) {
+                        document.getElementById("day" + (i + 1) + "Min").innerHTML = "Min: " + Number(data.list[i].main.temp_min - 273.15).toFixed(1) + "°";
+
+                    }
+
+                    for (i = 0; i < 5; i++) {
+                        document.getElementById("day" + (i + 1) + "Max").innerHTML = "Max: " + Number(data.list[i].main.temp_max - 273.15).toFixed(2) + "°";
+                    }
+
+
+
+
+
+                    for (i = 0; i < 5; i++) {
+                        document.getElementById("img" + (i + 1)).src = "http://openweathermap.org/img/wn/" +
+                            data.list[i].weather[0].icon
+                            + ".png";
+                    }
+
+
+                    // for(i=0;i < 40;i++){
+                    //     let mydt =data.list[i].dt_txt;
+                    //     console.log(mydt);
+                    //     let mys = mydt.slice(0, 10);
+                    //     console.log(mys);
+
+
+                    // }
+
+
+
+
+
+                    console.log(data)
+
+
+
+                })
+
+                .catch(err => alert("Something Went Wrong: Try Checking Your Internet Coneciton"))
+        }
+
+        function DefaultScreen() {
+            document.getElementById("cityInput").defaultValue = "Mohali";
+            GetInfo();
+        }
+
+
+
+        var d = new Date();
+        var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",];
+
+        function CheckDay(day) {
+            if (day + d.getDay() > 6) {
+                return day + d.getDay() - 7;
+            }
+            else {
+                return day + d.getDay();
+            }
+        }
+
+        for (i = 0; i < 5; i++) {
+            document.getElementById("day" + (i + 1)).innerHTML = weekday[CheckDay(i)];
+        }
+
+
+        var input = document.getElementById("cityInput");
+
+
+        input.addEventListener("keyup", function (event) {
+
+            if (event.keyCode === 13) {
+
+                event.preventDefault();
+
+                document.getElementById("subtn").click();
+
+
+                document.querySelectorAll('.mytr').forEach(function (a) {
+                a.remove()
+            })
+            }
+           
+        });
+
+
+
+        function iconone() {
+            var inpuval = document.getElementById("cityInput");
+            document.querySelectorAll('.mytr').forEach(function (a) {
+                a.remove()
+            })
+
+            fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + inpuval.value + '&appid=c3784919fef5acbc46a727e187ad10e8')
+                .then(response => response.json())
+                .then(data => {
+
+                    // const d = new Date("2021-09-22 09:00:00");
+                    // var data_filter = data.filter(element => element.list[i].dt_txt == "2021-09-22")
+                    // console.log(data_filter)
+                    // if (d == mydt) {
+                    //         alert('yes');
+                    //     } else {
+                    //         alert('no');
+                    //         console.log(mys);
+                    //     }
+
+                    const d = new Date();
+                    let year = d.getFullYear();
+                    let moun = d.getMonth() + 1;
+                    let ddate = d.getDate();
+
+                    let fulldate = year + '-0' + moun + '-' + (ddate);
+                    for (i = 0; i < 4; i++) {
+                        let mydt = data.list[i].dt_txt;
+                        // console.log(mydt);
+                        let mys = mydt.slice(0, 10);
+                        // console.log(mys);
+
+                        if (fulldate == mys) {
+                            let addDiv = document.createElement('tr');
+                            addDiv.className += "mytr";
+
+                            addDiv.innerHTML = ` 
+                            <td>${data.list[i].dt_txt.slice(11,19)} °</td>
+                    <td>${Number(data.list[i].main.temp_min - 273.15).toFixed(1)} °</td>
+                        <td>${Number(data.list[i].main.temp_max - 273.15).toFixed(1)} °</td>`;
+
+
+                            document.getElementById("hourreport").appendChild(addDiv);
+                            ;
+
+
+                         } 
+                         //else {
+                        //     alert('no');
+                        //     console.log(mys);
+                        //     console.log(fulldate);
+                        // }
+
+
+
+
+                    }
+
+
+
+
+
+                }).catch(err => alert("na na na "))
+        }
+
+        function icontwo() {
+            var inpuval = document.getElementById("cityInput");
+            document.querySelectorAll('.mytr').forEach(function (a) {
+                a.remove()
+            })
+
+
+            fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + inpuval.value + '&appid=c3784919fef5acbc46a727e187ad10e8')
+                .then(response => response.json())
+                .then(data => {
+
+                    // const d = new Date("2021-09-22 09:00:00");
+                    // var data_filter = data.filter(element => element.list[i].dt_txt == "2021-09-22")
+                    // console.log(data_filter)
+                    // if (d == mydt) {
+                    //         alert('yes');
+                    //     } else {
+                    //         alert('no');
+                    //         console.log(mys);
+                    //     }
+
+                    const d = new Date();
+                    let year = d.getFullYear();
+                    let moun = d.getMonth();
+                    let ddate = d.getDate();
+
+
+                    let fulldate = year + '-0' + (moun + 1) + '-' + (ddate + 1);
+                    for (i = 4; i < 10; i++) {
+                        let mydt = data.list[i].dt_txt;
+                        // console.log(mydt);
+                        let mys = mydt.slice(0, 10);
+                        // console.log(mys);
+
+                        if (fulldate == mys) {
+                            let addDiv = document.createElement('tr');
+                            addDiv.className += "mytr";
+
+
+                            addDiv.innerHTML = ` 
+                            <td>${data.list[i].dt_txt.slice(11,19)} °</td>
+                    <td>${Number(data.list[i].main.temp_min - 273.15).toFixed(1)} °</td>
+                        <td>${Number(data.list[i].main.temp_max - 273.15).toFixed(1)} °</td>`;
+
+
+                            document.getElementById("hourreport").appendChild(addDiv);
+
+
+                        } else {
+                            alert('no');
+                            console.log(mys);
+                            console.log(fulldate);
+                        }
+
+
+
+
+                    }
+
+
+
+
+
+                }).catch(err => alert("na na na "))
+        }
+        function iconthree() {
+            var inpuval = document.getElementById("cityInput");
+            document.querySelectorAll('.mytr').forEach(function (a) {
+                a.remove()
+            })
+
+
+            fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + inpuval.value + '&appid=c3784919fef5acbc46a727e187ad10e8')
+                .then(response => response.json())
+                .then(data => {
+
+                    // const d = new Date("2021-09-22 09:00:00");
+                    // var data_filter = data.filter(element => element.list[i].dt_txt == "2021-09-22")
+                    // console.log(data_filter)
+                    // if (d == mydt) {
+                    //         alert('yes');
+                    //     } else {
+                    //         alert('no');
+                    //         console.log(mys);
+                    //     }
+
+                    const d = new Date();
+                    let year = d.getFullYear();
+                    let moun = d.getMonth();
+                    let ddate = d.getDate();
+
+
+                    let fulldate = year + '-0' + (moun + 1) + '-' + (ddate + 2);
+                    for (i = 11; i < 18; i++) {
+                        let mydt = data.list[i].dt_txt;
+                        // console.log(mydt);
+                        let mys = mydt.slice(0, 10);
+                        // console.log(mys);
+
+                        if (fulldate == mys) {
+                            let addDiv = document.createElement('tr');
+                            addDiv.className += "mytr";
+
+
+                            addDiv.innerHTML = ` 
+                            <td>${data.list[i].dt_txt.slice(11,19)} °</td>
+                    <td>${Number(data.list[i].main.temp_min - 273.15).toFixed(1)} °</td>
+                        <td>${Number(data.list[i].main.temp_max - 273.15).toFixed(1)} °</td>`;
+
+
+                            document.getElementById("hourreport").appendChild(addDiv);
+
+
+                        } else {
+                            alert('no');
+                            console.log(mys);
+                            console.log(fulldate);
+                        }
+
+
+
+
+                    }
+
+
+
+
+
+                }).catch(err => alert("na na na "))
+        }
+
+
+        function iconfour() {
+            var inpuval = document.getElementById("cityInput");
+            document.querySelectorAll('.mytr').forEach(function (a) {
+                a.remove()
+            })
+
+
+            fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + inpuval.value + '&appid=c3784919fef5acbc46a727e187ad10e8')
+                .then(response => response.json())
+                .then(data => {
+
+                    // const d = new Date("2021-09-22 09:00:00");
+                    // var data_filter = data.filter(element => element.list[i].dt_txt == "2021-09-22")
+                    // console.log(data_filter)
+                    // if (d == mydt) {
+                    //         alert('yes');
+                    //     } else {
+                    //         alert('no');
+                    //         console.log(mys);
+                    //     }
+
+                    const d = new Date();
+                    let year = d.getFullYear();
+                    let moun = d.getMonth();
+                    let ddate = d.getDate();
+
+
+                    let fulldate = year + '-0' + (moun + 1) + '-' + (ddate + 3);
+                    for (i = 19; i < 26; i++) {
+                        let mydt = data.list[i].dt_txt;
+                        // console.log(mydt);
+                        let mys = mydt.slice(0, 10);
+                        // console.log(mys);
+
+                        if (fulldate == mys) {
+                            let addDiv = document.createElement('tr');
+                            addDiv.className += "mytr";
+
+
+                            addDiv.innerHTML = `
+                            <td>${data.list[i].dt_txt.slice(11,19)} °</td> 
+                    <td>${Number(data.list[i].main.temp_min - 273.15).toFixed(1)} °</td>
+                        <td>${Number(data.list[i].main.temp_max - 273.15).toFixed(1)} °</td>`;
+
+
+                            document.getElementById("hourreport").appendChild(addDiv);
+
+
+                        } else {
+                            alert('no');
+                            console.log(mys);
+                            console.log(fulldate);
+                        }
+
+
+
+
+                    }
+
+
+
+
+
+                }).catch(err => alert("na na na "))
+        }
+
+
+        function iconfive() {
+            var inpuval = document.getElementById("cityInput");
+            document.querySelectorAll('.mytr').forEach(function (a) {
+                a.remove()
+            })
+
+
+            fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + inpuval.value + '&appid=c3784919fef5acbc46a727e187ad10e8')
+                .then(response => response.json())
+                .then(data => {
+
+                    // const d = new Date("2021-09-22 09:00:00");
+                    // var data_filter = data.filter(element => element.list[i].dt_txt == "2021-09-22")
+                    // console.log(data_filter)
+                    // if (d == mydt) {
+                    //         alert('yes');
+                    //     } else {
+                    //         alert('no');
+                    //         console.log(mys);
+                    //     }
+
+                    const d = new Date();
+                    let year = d.getFullYear();
+                    let moun = d.getMonth();
+                    let ddate = d.getDate();
+
+
+                    let fulldate = year + '-0' + (moun + 1) + '-' + (ddate + 4);
+                    for (i = 27; i < 34; i++) {
+                        let mydt = data.list[i].dt_txt;
+                        // console.log(mydt);
+                        let mys = mydt.slice(0, 10);
+                        // console.log(mys);
+
+                        if (fulldate == mys) {
+                            let addDiv = document.createElement('tr');
+                            addDiv.className += "mytr";
+
+
+                            addDiv.innerHTML = ` 
+                            <td>${data.list[i].dt_txt.slice(11,19)} °</td>
+                    <td>${Number(data.list[i].main.temp_min - 273.15).toFixed(1)} °</td>
+                        <td>${Number(data.list[i].main.temp_max - 273.15).toFixed(1)} °</td>`;
+
+
+                            document.getElementById("hourreport").appendChild(addDiv);
+
+
+                        } else {
+                            alert('no');
+                            console.log(mys);
+                            console.log(fulldate);
+                        }
+
+
+
+
+                    }
+
+
+
+
+
+                }).catch(err => alert("na na na "))
+        }
+
+
+    </script>
+</body>
+
+</html>
